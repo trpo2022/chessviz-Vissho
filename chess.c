@@ -74,7 +74,7 @@ void stepchess(char** chess, char* step)
     stepF2 *= (-1);
     stepS2 *= (-1);
 
-    printf("%d %d %d %d\n", stepF1, stepF2, stepS1, stepS2);
+    //printf("%d %d %d %d\n", stepF1, stepF2, stepS1, stepS2);
 
     if (x < 5 || x > 7) {
         printf("Вы ввели некорректный ход!\n");
@@ -88,16 +88,19 @@ void stepchess(char** chess, char* step)
         } else {
             printf("Вы берете не ту фигуру!\n");
         }
-        exit(-1);    
+        exit(-1);
     } else if (chess[stepF2][stepF1] == ' ') {
         printf("На этом месте нет фигуру!\n");
         exit(-1);
+    } else if ((type == '-' && chess[stepS2][stepS1] != ' ') || (type == 'x' && chess[stepS2][stepS1] == ' ') || (type != '-' && type != 'x')) {
+        printf("Вы используете некорректный тип хода!\n");
+        exit(-1);
     }
 
-    if (type == '-') {
-        chess[stepS2][stepS1] = chess[stepF2][stepF1];
-        chess[stepF2][stepF1] = ' ';   
-    }
+
+    chess[stepS2][stepS1] = chess[stepF2][stepF1];
+    chess[stepF2][stepF1] = ' ';   
+
 }
 
 void printchess(char** chess)
