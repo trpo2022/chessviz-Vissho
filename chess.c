@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 void createchess(char** chess)
 {
@@ -43,13 +44,14 @@ void createchess(char** chess)
             }
         }
     }
+    chess[8][0] = ' ';
 }
 
 void stepchess(char** chess, char* step)
 {
-    int x = strlen(step);
+    long int x = strlen(step);
     int stepF1, stepF2, stepS1, stepS2;
-    char type;
+    char type, figure;
     if (x == 5) {
         stepF1 = step[0];
         stepF2 = step[1];
@@ -57,6 +59,7 @@ void stepchess(char** chess, char* step)
         stepS1 = step[3];
         stepS2 = step[4];
     } else if (x == 6) {
+        figure = step[0];
         stepF1 = step[1];
         stepF2 = step[2];
         type = step[3];
@@ -64,22 +67,34 @@ void stepchess(char** chess, char* step)
         stepS2 = step[5];      
     }
 
+    stepF1 -= 96;  // Преобразовываем ход в рабочие данные
+    stepF2 -= 56;
+    stepS1 -= 96;
+    stepS2 -= 56;
+    stepF2 *= (-1);
+    stepS2 *= (-1);
 
-    if (x < 5) {
+    printf("%d %d %d %d\n", stepF1, stepF2, stepS1, stepS2);
+
+    if (x < 5 || x > 7) {
         printf("Вы ввели некорректный ход!\n");
         exit(-1);
-    } else if (stepF2 > 56 || stepF2 < 49 || stepS2 > 56 || stepS2 < 49 || stepF1 > 104 || stepF1 < 97 || stepS1 > 104 || stepS1 < 97) {
+    } else if (stepF2 > 7 || stepF2 < 0 || stepS2 > 7 || stepS2 < 0 || stepF1 > 8 || stepF1 < 1 || stepS1 > 8 || stepS1 < 1) {
         printf("Вы вышли за пределы поля!\n");
+        exit(-1);
+    } else if (figure != toupper(chess[stepF2][stepF1]) && x == 6) {
+        if (chess[stepF2][stepF1] == ' ') {
+            printf("На этом месте нет фигуру!\n");
+        } else {
+            printf("Вы берете не ту фигуру!\n");
+        }
+        exit(-1);    
+    } else if (chess[stepF2][stepF1] == ' ') {
+        printf("На этом месте нет фигуру!\n");
         exit(-1);
     }
 
     if (type == '-') {
-        stepF1 -= 96;
-        stepF2 -= 56;
-        stepS1 -= 96;
-        stepS2 -= 56;
-        stepF2 *= (-1);
-        stepS2 *= (-1);
         chess[stepS2][stepS1] = chess[stepF2][stepF1];
         chess[stepF2][stepF1] = ' ';   
     }
