@@ -10,12 +10,6 @@ clean:
 	rm hello
 	rm chess
 
-clean_hello:
-	rm hello
-
-clean_chess:
-	rm chess
-
 run_hello:
 	./hello
 
