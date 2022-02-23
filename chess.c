@@ -5,19 +5,26 @@
 #include <string.h>
 #define COORDINATES 4
 #define FIELD 9
+#define column_for_numbers  0 
+#define column_for_letters  8
+#define coord_for_black  0 
+#define coord_for_white  7
+#define coord_for_left_rook  1 
+#define coord_for_right_rook  8
+#define coord_for_left_kNight  2 
+#define coord_for_right_kNight  7
+#define coord_for_left_bishop  3 
+#define coord_for_right_bishop  6
+#define coord_for_queen  4 
+#define coord_for_king  5
+#define coord_for_black_pawn  1 
+#define coord_for_white_pawn  6 
+#define beginning_of_the_line  0
 
 void create_chess(char** chess)
 {
     int i, j;
     char x = 97, z = 56;
-    const int column_for_numbers = 0, column_for_letters = 8;
-    const int coord_for_black = 0, coord_for_white = 7;
-    const int coord_for_left_rook = 1, coord_for_right_rook = 8;
-    const int coord_for_left_kNight = 2, coord_for_right_kNight = 7;
-    const int coord_for_left_bishop = 3, coord_for_right_bishop = 6;
-    const int coord_for_queen = 4, coord_for_king = 5;
-    const int coord_for_black_pawn = 1, coord_for_white_pawn = 6,
-              beginning_of_the_line = 0;
     for (i = 0; i < FIELD; i++) {
         for (j = 0; j < FIELD; j++) {
             if (j == column_for_numbers) {
@@ -87,18 +94,18 @@ int check_rule(char** chess, int* rule, char type)
             flag++;
         }
         if (c == 'P') {
-            if (rule[0] == 6 && (rule[0] - rule[2]) != 2
+            if (rule[0] == coord_for_white_pawn && (rule[0] - rule[2]) != 2
                 && (rule[0] - rule[2]) != 1) {
                 flag++;
-            } else if ((rule[0] - rule[2]) != 1 && rule[0] != 6) {
+            } else if ((rule[0] - rule[2]) != 1 && rule[0] != coord_for_white_pawn) {
                 flag++;
             }
         }
         if (c == 'p') {
-            if (rule[0] == 1 && (rule[2] - rule[0]) != 2
+            if (rule[0] == coord_for_black_pawn && (rule[2] - rule[0]) != 2
                 && (rule[2] - rule[0]) != 1) {
                 flag++;
-            } else if ((rule[2] - rule[0]) != 1 && rule[0] != 1) {
+            } else if ((rule[2] - rule[0]) != 1 && rule[0] != coord_for_black_pawn) {
                 flag++;
             }
         }
@@ -355,13 +362,15 @@ void step_chess(char** chess, char* step, int flag)
     stepS2 *= (-1);
 
     // printf("%d %d %d %d\n", stepF1, stepF2, stepS1, stepS2);
+    const int left_border = 1, right_border = 8;
+    const int up_border = 0, down_border = 7;
 
     if (x < 5 || x > 10) {
         printf("Вы ввели некорректный ход!\n");
         free_and_exit(chess);
     } else if (
-            stepF2 > 7 || stepF2 < 0 || stepS2 > 7 || stepS2 < 0 || stepF1 > 8
-            || stepF1 < 1 || stepS1 > 8 || stepS1 < 1) {
+            stepF2 > down_border || stepF2 < up_border || stepS2 > down_border || stepS2 < up_border || stepF1 > right_border
+            || stepF1 < left_border || stepS1 > right_border || stepS1 < left_border) {
         printf("Вы вышли за пределы поля!\n");
         free_and_exit(chess);
         ;
