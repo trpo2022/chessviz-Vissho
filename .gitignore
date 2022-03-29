@@ -1,7 +1,5 @@
-*.[oa]
-*~
-*swp
-*.txt
-hello
-chess
-.vscode/
+*.a
+*.d
+*.o
+bin/hello
+
