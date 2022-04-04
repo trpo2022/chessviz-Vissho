@@ -1,18 +1,20 @@
-all: hello chess
+CFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -MMD
 
-hello: hello.c
-	gcc -Wall -Werror -o hello hello.c
+all: main.o chessviz.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-chess: chess.c
-	gcc -Wall -Werror -o chess chess.c
+main.o: main.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+chessviz.o: libchessviz/chessviz.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+-include main.d chessviz.d
 
 clean:
-	rm hello
-	rm chess
+	rm ./main
 
-run_hello:
-	./hello
-
-run_chess:
-	./chess
+run:
+	./main
 
