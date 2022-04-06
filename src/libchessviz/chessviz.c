@@ -420,7 +420,7 @@ void print_chess(char** chess)
     }
 }
 
-int check_king(char** chess, char* step, int flag)
+int check_king(char* step, int flag)
 {
     long int x = strlen(step);
     char end1;

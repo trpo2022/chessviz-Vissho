@@ -1,20 +1,45 @@
+APP_NAME = chessviz
+LIB_NAME = libchessviz
+DEBUG = -g3 -O0
+
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -MMD
+CPPFLAGS = -I src -MP -MMD
 
-all: main.o chessviz.o
-	$(CC) $(CFLAGS) -o $@ $^
+BIN_DIR = bin
+OBJ_DIR = obj
+SRC_DIR = src
 
-main.o: main.c
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+APP_PATH = $(BIN_DIR)/$(APP_NAME)
+LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
 
-chessviz.o: libchessviz/chessviz.c
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+SRC_EXT = c
 
--include main.d chessviz.d
+APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name '*.$(SRC_EXT)')
+APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
 
+LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
+LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
+
+DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d)
+
+.PHONY: all
+all: $(APP_PATH)
+
+-include $(DEPS)
+
+$(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
+	$(CC) $(CFLAGS) $(DEBUG) $(CPPFLAGS) -o $@ $^ -lm
+
+$(LIB_PATH): $(LIB_OBJECTS)
+	ar rcs $@ $^
+
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) $(DEBUG) $(CPPFLAGS) -c -o $@ $<
+
+.PHONY: clean
 clean:
-	rm ./main
+	rm -rf $(APP_PATH) $(LIB_PATH)
+	rm -rf $(DEPS) $(APP_OBJECTS) $(LIB_OBJECTS)
 
 run:
-	./main
-
+	-$(APP_PATH)

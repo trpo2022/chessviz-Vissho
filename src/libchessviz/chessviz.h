@@ -1,6 +1,12 @@
 #ifndef _CHESSVIZ_
 #define _CHESSVIZ_
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
+
 #define COORDINATES 4
 #define FIELD 9
 #define column_for_numbers  0 
@@ -24,6 +30,6 @@ int check_rule(char** chess, int* rule, char type);
 void free_and_exit(char** chess);
 void step_chess(char** chess, char* step, int flag);
 void print_chess(char** chess);
-int check_king(char** chess, char* step, int flag);
+int check_king(char* step, int flag);
 
 #endif // _CHESSVIZ_
