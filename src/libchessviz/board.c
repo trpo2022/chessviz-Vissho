@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <math.h>
 
 #define coord_for_black_pawn  1 
 #define coord_for_white_pawn  6 

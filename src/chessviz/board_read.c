@@ -1,7 +1,5 @@
 #include <chessviz/board_read.h>
-#include <stdlib.h>
 
-#define FIELD  9 
 #define column_for_numbers  0 
 #define column_for_letters  8
 #define coord_for_black  0 

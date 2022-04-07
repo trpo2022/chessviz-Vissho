@@ -1,14 +1,7 @@
-#include <ctype.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <chessviz/board_read.h>
 #include <libchessviz/board.h>
 #include <libchessviz/board_print_plain.h>
 #include <libchessviz/move.h>
-
-#define FIELD 9
 
 int main()
 {

@@ -1,10 +1,6 @@
 #include <libchessviz/move.h>
 #include <libchessviz/board.h>
 #include <chessviz/board_read.h>
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <math.h>
 
 #define COORDINATES 4
 
