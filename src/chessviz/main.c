@@ -1,21 +1,22 @@
-// #include <ctype.h>
-// #include <math.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-#include "../libchessviz/chessviz.h"
+#include <ctype.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <chessviz/board_read.h>
+#include <libchessviz/board.h>
+#include <libchessviz/board_print_plain.h>
+#include <libchessviz/move.h>
+
+#define FIELD 9
 
 int main()
 {
     int i, flag = 1;
     char** chess;
     char step[30];
-    chess = (char**)malloc(FIELD * sizeof(char*));
-    for (i = 0; i < FIELD; i++) {
-        chess[i] = (char*)malloc(FIELD * sizeof(char));
-    }
 
-    create_chess(chess);
+    chess = create_chess();
     print_chess(chess);
 
     do {
