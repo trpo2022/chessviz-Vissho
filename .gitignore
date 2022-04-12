@@ -1,5 +1,5 @@
 *.a
 *.d
 *.o
-bin/hello
+bin/chessviz
 .vscode/
