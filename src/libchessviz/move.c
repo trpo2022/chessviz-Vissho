@@ -1,6 +1,6 @@
-#include <libchessviz/move.h>
-#include <libchessviz/board.h>
 #include <chessviz/board_read.h>
+#include <libchessviz/board.h>
+#include <libchessviz/move.h>
 
 #define COORDINATES 4
 
@@ -50,8 +50,10 @@ void step_chess(char** chess, char* step, int flag)
         printf("Вы ввели некорректный ход!\n");
         free_and_exit(chess);
     } else if (
-            stepF2 > down_border || stepF2 < up_border || stepS2 > down_border || stepS2 < up_border || stepF1 > right_border
-            || stepF1 < left_border || stepS1 > right_border || stepS1 < left_border) {
+            stepF2 > down_border || stepF2 < up_border || stepS2 > down_border
+            || stepS2 < up_border || stepF1 > right_border
+            || stepF1 < left_border || stepS1 > right_border
+            || stepS1 < left_border) {
         printf("Вы вышли за пределы поля!\n");
         free_and_exit(chess);
         ;

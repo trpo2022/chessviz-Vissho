@@ -1,20 +1,20 @@
 #include <chessviz/board_read.h>
 
-#define column_for_numbers  0 
-#define column_for_letters  8
-#define coord_for_black  0 
-#define coord_for_white  7
-#define coord_for_left_rook  1 
-#define coord_for_right_rook  8
-#define coord_for_left_kNight  2 
-#define coord_for_right_kNight  7
-#define coord_for_left_bishop  3 
-#define coord_for_right_bishop  6
-#define coord_for_queen  4 
-#define coord_for_king  5
-#define coord_for_black_pawn  1 
-#define coord_for_white_pawn  6 
-#define beginning_of_the_line  0
+#define column_for_numbers 0
+#define column_for_letters 8
+#define coord_for_black 0
+#define coord_for_white 7
+#define coord_for_left_rook 1
+#define coord_for_right_rook 8
+#define coord_for_left_kNight 2
+#define coord_for_right_kNight 7
+#define coord_for_left_bishop 3
+#define coord_for_right_bishop 6
+#define coord_for_queen 4
+#define coord_for_king 5
+#define coord_for_black_pawn 1
+#define coord_for_white_pawn 6
+#define beginning_of_the_line 0
 
 char** create_chess()
 {

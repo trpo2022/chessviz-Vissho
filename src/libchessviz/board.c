@@ -1,11 +1,11 @@
+#include <ctype.h>
 #include <libchessviz/board.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <string.h>
 
-#define coord_for_black_pawn  1 
-#define coord_for_white_pawn  6 
+#define coord_for_black_pawn 1
+#define coord_for_white_pawn 6
 
 int check_rule(char** chess, int* rule, char type)
 {
@@ -21,7 +21,9 @@ int check_rule(char** chess, int* rule, char type)
             if (rule[0] == coord_for_white_pawn && (rule[0] - rule[2]) != 2
                 && (rule[0] - rule[2]) != 1) {
                 flag++;
-            } else if ((rule[0] - rule[2]) != 1 && rule[0] != coord_for_white_pawn) {
+            } else if (
+                    (rule[0] - rule[2]) != 1
+                    && rule[0] != coord_for_white_pawn) {
                 flag++;
             }
         }
@@ -29,7 +31,9 @@ int check_rule(char** chess, int* rule, char type)
             if (rule[0] == coord_for_black_pawn && (rule[2] - rule[0]) != 2
                 && (rule[2] - rule[0]) != 1) {
                 flag++;
-            } else if ((rule[2] - rule[0]) != 1 && rule[0] != coord_for_black_pawn) {
+            } else if (
+                    (rule[2] - rule[0]) != 1
+                    && rule[0] != coord_for_black_pawn) {
                 flag++;
             }
         }
@@ -259,7 +263,7 @@ int check_king(char* step, int flag)
         } else if (flag == -1) {
             printf("Шах и мат королю чёрных!\n");
         }
-        flag1++; 
+        flag1++;
     }
 
     return flag1;
