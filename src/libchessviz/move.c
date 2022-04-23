@@ -1,4 +1,4 @@
-#include <chessviz/board_read.h>
+#include <libchessviz/board_read.h>
 #include <libchessviz/board.h>
 #include <libchessviz/move.h>
 
@@ -105,6 +105,7 @@ void step_chess(char** chess, char* step, int flag)
     }
 
     int RULE[COORDINATES] = {stepF2, stepF1, stepS2, stepS1};
+    printf("%d %d %d %d\n", stepF2, stepF1, stepS2, stepS1);
     if (check_rule(chess, RULE, type) != 0) {
         printf("Вы неправильно походили фигурой!\n");
         free_and_exit(chess);
