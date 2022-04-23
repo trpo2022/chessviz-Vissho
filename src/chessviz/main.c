@@ -1,6 +1,6 @@
-#include <libchessviz/board_read.h>
 #include <libchessviz/board.h>
 #include <libchessviz/board_print_plain.h>
+#include <libchessviz/board_read.h>
 #include <libchessviz/move.h>
 
 int main()
