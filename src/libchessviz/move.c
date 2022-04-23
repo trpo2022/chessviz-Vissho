@@ -1,5 +1,5 @@
-#include <libchessviz/board_read.h>
 #include <libchessviz/board.h>
+#include <libchessviz/board_read.h>
 #include <libchessviz/move.h>
 
 #define COORDINATES 4
