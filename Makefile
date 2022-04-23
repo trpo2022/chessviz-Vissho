@@ -59,3 +59,6 @@ clean:
 
 run:
 	-$(APP_PATH)
+
+run_test:
+	-$(TEST_PATH)
