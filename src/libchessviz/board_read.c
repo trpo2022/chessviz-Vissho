@@ -1,4 +1,4 @@
-#include <chessviz/board_read.h>
+#include <libchessviz/board_read.h>
 
 #define column_for_numbers 0
 #define column_for_letters 8
